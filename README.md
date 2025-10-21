@@ -1,6 +1,7 @@
 # javascript-racingcar-precourse
 기능 구현 목록
 
+- userInputName 유효성 검사 테스트 코드 작성.
 - 경주 자동차 이름 입력.
 - 이름 유효성 검사.
 - 에러메시지.

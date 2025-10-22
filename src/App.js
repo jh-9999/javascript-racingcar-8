@@ -70,6 +70,7 @@ function startRacingCar(names, attemptCount) {
   let score = new Array(names.length).fill(0);
 
   for(let i = 0; i < attemptCount; i++) {
+    updateScore(score);
     printProgress(names, score);
     print('');
   }
@@ -77,13 +78,8 @@ function startRacingCar(names, attemptCount) {
 }
 
 function printProgress(names, score) {
-  for (let j = 0; j < names.length; j++){
-    const randomNumber = getRandomNumber();
-    const action = moveOrStop(randomNumber);
-    if (action === 'move') {
-      score[j]++;
-    }
-    print(`${names[j]} : ${'-'.repeat(score[j])}`);
+  for (let i = 0; i < names.length; i++){
+    print(`${names[i]} : ${'-'.repeat(score[i])}`);
   }
 }
 

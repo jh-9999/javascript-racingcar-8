@@ -15,7 +15,10 @@ class App {
   async run() {
     const userInputName = await getUserInput(NAME_PLACEHOLDER);
     const names = checkUserInputName(userInputName);
+    Console.print(names);
     const userInputAttemptCount = await getUserInput(ATTEMPT_COUNT_PLACEHOLDER);
+    const attemptCount = checkUserInputAttemptCount(userInputAttemptCount);
+    Console.print(attemptCount);
   }
 }
 
@@ -45,6 +48,10 @@ export function checkUserInputAttemptCount(userInputAttemptCount) {
 
 function removeSpaces(string) {
   return string.replace(/\s+/g, '');
+}
+
+function getRandomNumber() {
+  return Random.pickNumberInRange(0, 9);
 }
 
 export default App;

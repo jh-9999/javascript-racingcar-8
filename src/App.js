@@ -54,4 +54,9 @@ function getRandomNumber() {
   return Random.pickNumberInRange(0, 9);
 }
 
+export function moveOrStop(number) {
+  if (number >= 4) return 'move';
+  if (number < 4) return 'stop';
+}
+
 export default App;

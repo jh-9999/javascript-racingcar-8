@@ -24,7 +24,7 @@ async function getUserInput(placeholder) {
 }
 
 export function checkUserInputName(userInputName) {
-  userInputName.replace(/\s+/g, '');
+  userInputName = removeSpaces(userInputName);
   if (!userInputName) errorMessage(ERROR_MESSAGE_EMPTY_NAME)
   if (!PATTERN_NAME.test(userInputName)) errorMessage(ERROR_MESSAGE_INVALID_DELIMITER)
   const names = userInputName.split(',');
@@ -37,10 +37,14 @@ function errorMessage(message) {
 }
 
 export function checkUserInputAttemptCount(userInputAttemptCount) {
-  userInputAttemptCount.replace(/\s+/g, '');
+  userInputAttemptCount = removeSpaces(userInputAttemptCount);
   if (!userInputAttemptCount) errorMessage(ERROR_MESSAGE_EMPTY_ATTEMPT_COUNT)
   if (!PATTERN_ATTEMPT_COUNT.test(userInputAttemptCount)) errorMessage(ERROR_MESSAGE_INVALID_ATTEMPT_COUNT)
   return parseInt(userInputAttemptCount);
+}
+
+function removeSpaces(string) {
+  return string.replace(/\s+/g, '');
 }
 
 export default App;

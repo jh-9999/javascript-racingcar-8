@@ -22,7 +22,7 @@ class App {
     const userInputAttemptCount = await getUserInput(ATTEMPT_COUNT_PLACEHOLDER);
     const attemptCount = checkUserInputAttemptCount(userInputAttemptCount);
     Console.print(RESULT_MESSAGE);
-    
+
     const score = startRacingCar(names, attemptCount);
     const winners = winnersList(score, names);
     print(WINNERS_MESSAGE + winners);
@@ -70,14 +70,7 @@ function startRacingCar(names, attemptCount) {
   let score = new Array(names.length).fill(0);
 
   for(let i = 0; i < attemptCount; i++) {
-    for (let j = 0; j < names.length; j++){
-      const randomNumber = getRandomNumber();
-      const action = moveOrStop(randomNumber);
-      if (action === 'move') {
-        score[j]++;
-      }
-      print(`${names[j]} : ${'-'.repeat(score[j])}`);
-    }
+    printProgress(names, score);
     print('');
   }
   return score;

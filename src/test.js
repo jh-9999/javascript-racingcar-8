@@ -1,4 +1,4 @@
-import { checkUserInputName, checkUserInputAttemptCount } from './App.js';
+import { checkUserInputName, checkUserInputAttemptCount, moveOrStop } from './App.js';
 
 describe('userInputName 유효성 검사', () => {
 
@@ -23,5 +23,14 @@ describe('userInputAttemptCount 유효성 검사', () => {
 
     test('사용자가 시도 횟수 입력시, 숫자가 아닌 문자를 포함할 경우 에러를 발생시킨다.', () => {
         expect(() => checkUserInputAttemptCount('5a,')).toThrow('[ERROR]');
+    })
+})
+
+describe('moveOrStop 검사', () => {
+    test('값이 4 이상일 경우 "move"를 반환한다.', () => {
+        expect(moveOrStop(4)).toBe('move');
+    })
+    test('값이 4 미만일 경우 "stop"을 반환한다.', () => {
+        expect(moveOrStop(3)).toBe('stop');
     })
 })

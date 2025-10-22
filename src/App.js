@@ -3,6 +3,7 @@ import { Random, Console } from '@woowacourse/mission-utils';
 const NAME_PLACEHOLDER = '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
 const ATTEMPT_COUNT_PLACEHOLDER = '시도할 횟수는 몇 회인가요?\n'
 const RESULT_MESSAGE = '\n실행 결과'
+const WINNERS_MESSAGE = '최종 우승자 : ';
 const PATTERN_NAME = /^[가-힣a-zA-Z0-9,]+$/
 const PATTERN_ATTEMPT_COUNT = /^[0-9]+$/;
 const ERROR_MESSAGE = '[ERROR]';
@@ -21,8 +22,10 @@ class App {
     const userInputAttemptCount = await getUserInput(ATTEMPT_COUNT_PLACEHOLDER);
     const attemptCount = checkUserInputAttemptCount(userInputAttemptCount);
     Console.print(RESULT_MESSAGE);
-    startRacingCar(names, attemptCount);
-
+    
+    const score = startRacingCar(names, attemptCount);
+    const winners = winnersList(score, names);
+    print(WINNERS_MESSAGE + winners);
   }
 }
 
@@ -77,10 +80,25 @@ function startRacingCar(names, attemptCount) {
     }
     print('');
   }
+  return score;
 }
 
 function print(string) {
   return Console.print(string);
+}
+
+function winnersList(score, names) {
+  const maxScore = Math.max(...score);
+  let winners = '';
+  let startIndex = 0;
+  while(true) {
+    let index = score.indexOf(maxScore, startIndex);
+    if(index === -1) break;
+    if(winners) winners += ', ';
+    winners += names[index];
+    startIndex = index + 1;
+  }
+  return winners;
 }
 
 export default App;

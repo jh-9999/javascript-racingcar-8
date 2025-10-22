@@ -18,3 +18,16 @@ describe('userInputName 유효성 검사', () => {
 
     
 });
+
+describe('userInputAttemptCount 유효성 검사', () => {
+    beforeAll(() => console.log('테스트 시작'));
+    afterAll(() => console.log('테스트 종료'));
+
+    test('사용자가 시도 횟수 입력시, 빈 문자열일 경우 에러를 발생시킨다.', () => {
+        expect(() => checkUserInputAttemptCount("")).toThrow('[ERROR]');
+    })
+
+    test('사용자가 시도 횟수 입력시, 숫자가 아닌 문자를 포함할 경우 에러를 발생시킨다.', () => {
+        expect(() => checkUserInputAttemptCount('5a,')).toThrow('[ERROR]');
+    })
+})

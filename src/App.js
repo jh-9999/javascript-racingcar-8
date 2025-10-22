@@ -77,6 +77,16 @@ function startRacingCar(names, attemptCount) {
   return score;
 }
 
+function updateScore(score) {
+  for (let i = 0; i < score.length; i++) {
+    const randomNumber = getRandomNumber();
+    const action = moveOrStop(randomNumber);
+    if (action === 'move') {
+      score[i] = score[i] + 1;
+    }
+  }
+}
+
 function printProgress(names, score) {
   for (let i = 0; i < names.length; i++){
     print(`${names[i]} : ${'-'.repeat(score[i])}`);

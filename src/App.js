@@ -14,7 +14,7 @@ const MESSAGES = {
 }
 
 const RULES = {
-  PATTERN_ATTEMPT_COUNT: /^[0-9]+$/,
+  PATTERN_ATTEMPT_COUNT: /^[1-9]+$/,
   PATTERN_NAME: /^[가-힣a-zA-Z0-9,]+$/,
   NAME_MAX_LENGTH: 5,
   MOVE_THRESHOLD: 4,
@@ -31,7 +31,7 @@ class App {
 
     const userInputAttemptCount = await getUserInput(MESSAGES.ATTEMPT_PLACEHOLDER);
     const attemptCount = checkUserInputAttemptCount(userInputAttemptCount);
-    Console.print(MESSAGES.RESULT_HEADER);
+    print(MESSAGES.RESULT_HEADER);
 
     const score = startRacingCar(names, attemptCount);
     const winners = winnersList(score, names);
@@ -47,7 +47,7 @@ export function checkUserInputName(userInputName) {
   userInputName = removeSpaces(userInputName);
   if (!userInputName) errorMessage(MESSAGES.ERROR_EMPTY_NAME)
   if (!RULES.PATTERN_NAME.test(userInputName)) errorMessage(MESSAGES.ERROR_INVALID_DELIMITER)
-  const names = userInputName.split(',');
+  const names = userInputName.split(',').filter(name => name !== '');
   if (names.some((name) => name.length > RULES.NAME_MAX_LENGTH)) errorMessage(MESSAGES.ERROR_NAME_LENGTH)
   return names;
 }

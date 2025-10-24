@@ -34,3 +34,4 @@ describe('moveOrStop 검사', () => {
         expect(moveOrStop(3)).toBe('stop');
     })
 })
+
